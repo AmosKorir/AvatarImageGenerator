@@ -33,7 +33,7 @@ jobs:
       - run:
           name: publish to bin tray
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ];
+            if [ "${CIRCLE_BRANCH}" == "release" ];
             then
               ./gradlew -Puser=$BINTRAY_USER -Pkey=$BINTRAY_API_KEY  bintrayUpload;
             fi
