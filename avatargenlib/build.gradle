@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-  bintrayRepo = 'AvatarImageGenerator'
-  bintrayName = 'AvatarImageGenerator'
+  bintrayRepo = 'AvatarGenerator'
+  bintrayName = 'AvatarGenerator'
 
   publishedGroupId ='com.first.avatargenerator'
   libraryName ='AvatarImageGenerator'
   artifact ='AvatarImageGenerator'
 
-  libraryDescription ='AvatarGenerator'
+  libraryDescription ='Create first later avatar , for image place holder'
 
   siteUrl = 'https://github.com/skyways/AvatarImageGenerator'
   gitUrl = 'https://github.com/skyways/AvatarImageGenerator'
