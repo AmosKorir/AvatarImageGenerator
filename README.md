@@ -5,7 +5,9 @@ Generate first letter avatar Image
     
    
 <img  width="200" height="400" src="https://github.com/skyways/AvatarImageGenerator/blob/master/art/screen.jpeg"/>
+
 **Installation**
+
 Add the Following to your gradle file.
 
 ```java
