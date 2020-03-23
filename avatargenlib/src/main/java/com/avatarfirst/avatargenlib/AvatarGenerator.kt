@@ -20,6 +20,14 @@ class AvatarGenerator {
     var texSize = 0F
 
     fun avatarImage(context: Context, size: Int, shape: Int, name: String): BitmapDrawable {
+      return  avatarImageGenerate(context ,size ,shape, name,AvatarConstants.COLOR700)
+    }
+
+    fun avatarImage(context: Context, size: Int, shape: Int, name: String,colorModel:Int): BitmapDrawable {
+      return  avatarImageGenerate(context ,size ,shape, name,colorModel)
+    }
+
+    fun avatarImageGenerate(context: Context, size: Int, shape: Int, name: String,colorModel:Int): BitmapDrawable {
       uiContext = context
       val width = size
       val hieght = size
