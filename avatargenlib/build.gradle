@@ -7,15 +7,15 @@ ext {
   bintrayName = 'AvatarGenerator'
 
   publishedGroupId ='com.first.avatargenerator'
-  libraryName ='AvatarGenerator'
-  artifact ='AvatarGenerator'
+  libraryName ='AvatarImageGenerator'
+  artifact ='AvatarImageGenerator'
 
-  libraryDescription ='AvatarGenerator'
+  libraryDescription ='Create first later avatar , for image place holder'
 
-  siteUrl = 'https://github.com/skyways/AvatarGenerator'
-  gitUrl = 'https://github.com/skyways/AvatarGenerator'
+  siteUrl = 'https://github.com/skyways/AvatarImageGenerator'
+  gitUrl = 'https://github.com/skyways/AvatarImageGenerator'
 
-  libraryVersion = '1.2'
+  libraryVersion = '1.3'
   developerId = 'skyways'
   developerName = 'Korir Amos'
   developerEmail = 'amoskrr@gmail.com'
