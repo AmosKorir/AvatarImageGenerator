@@ -8,7 +8,7 @@ import java.util.Stack
  * Created by Korir on 1/23/20.
  */
 
-internal class RandomColors {
+internal class RandomColors(colorModel:Int=700) {
   private val recycle: Stack<Int>
   private val colors: Stack<Int>
   fun getColor(): Int {
@@ -24,14 +24,44 @@ internal class RandomColors {
   init {
     colors = Stack()
     recycle = Stack()
-    recycle.addAll(
-      Arrays.asList(
-        -0xbbcca, -0x16e19d, -0x63d850, -0x98c549,
-        -0xc0ae4b, -0xde690d, -0xfc560c, -0xff432c,
-        -0xff6978, -0xb350b0, -0x743cb6, -0x3223c7,
-        -0x14c5, -0x3ef9, -0x6800, -0xa8de,
-        -0x86aab8, -0x616162, -0x9f8275, -0xcccccd
+    if (colorModel==700){
+      recycle.addAll(
+        //A 700
+        Arrays.asList(
+          -0xd32f2f, -0xC2185B, -0x7B1FA2, -0x512DA8,
+          -0x303F9F, -0x1976D2, -0x0288D1, -0x0097A7,
+          -0x00796B, -0x388E3C, -0x689F38, -0xAFB42B,
+          -0xFBC02D, -0xFFA000, -0xF57C00,  -0xE64A19,
+          -0x5D4037, -0x616161, -0x455A64
+        )
       )
-    )
+    }
+
+    //A400
+    if(colorModel==400){
+      recycle.addAll(
+        Arrays.asList(
+          -0xef5350, -0xEC407A, -0xAB47BC, -0x7E57C2,
+          -0x5C6BC0, -0x42A5F5, -0x29B6F6, -0x26C6DA,
+          -0x26A69A, -0x66BB6A, -0x9CCC65, -0xD4E157,
+          -0xFFEE58, -0xFFCA28, -0xFFA726, -0xFF7043,
+          -0x8D6E63, -0xBDBDBD, -0x78909C
+        )
+      )
+    }
+
+    //A900
+    if(colorModel==900){
+      recycle.addAll(
+        Arrays.asList(
+          -0xb71c1c, -0x880E4F, -0x4A148C, -0x311B92,
+          -0x1A237E, -0x0D47A1, -0x01579B, -0x006064,
+          -0x004D40, -0x1B5E20, -0x33691E, -0x827717,
+          -0xF57F17, -0xFF6F00, -0xE65100, -0xBF360C,
+          -0x3E2723, -0x212121, -0x263238
+        )
+      )
+    }
+
   }
 }
