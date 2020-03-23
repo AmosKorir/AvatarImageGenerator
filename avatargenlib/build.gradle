@@ -15,7 +15,7 @@ ext {
   siteUrl = 'https://github.com/skyways/AvatarImageGenerator'
   gitUrl = 'https://github.com/skyways/AvatarImageGenerator'
 
-  libraryVersion = '1.2'
+  libraryVersion = '1.3'
   developerId = 'skyways'
   developerName = 'Korir Amos'
   developerEmail = 'amoskrr@gmail.com'
