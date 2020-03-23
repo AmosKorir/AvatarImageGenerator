@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     Picasso.get()
       .load("https://brokenfortest")
       .resize(50, 50)
-      .placeholder(AvatarGenerator.avatarImage(this, 200, AvatarConstants.CIRCLE, "Android"))
+      .placeholder(AvatarGenerator.avatarImage(this, 200, AvatarConstants.CIRCLE, "Android",AvatarConstants.COLOR900))
       .into(imageView2)
 
     //Glide
