@@ -1,41 +1,48 @@
 package com.avatarfirst.avatagen
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.avatarfirst.avatargenlib.AvatarConstants
-import com.avatarfirst.avatargenlib.AvatarGenerator
-import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.imageView
-import kotlinx.android.synthetic.main.activity_main.imageView2
-import kotlinx.android.synthetic.main.activity_main.imageView3
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.avatarfirst.avatagen.apis.ApiData
+import com.avatarfirst.avatagen.apis.GithubUserApiResponseItem
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
+    private val apiCall = ApiData()
+    private var compositeDisposable = CompositeDisposable()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        loadData()
+    }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    imageView.setImageDrawable(
-      AvatarGenerator.avatarImage(
-        this,
-        200,
-        AvatarConstants.RECTANGLE,
-        "Skyways"
-      )
-    )
-//picaso
-    Picasso.get()
-      .load("https://brokenfortest")
-      .resize(50, 50)
-      .placeholder(AvatarGenerator.avatarImage(this, 200, AvatarConstants.CIRCLE, "Android",AvatarConstants.COLOR900))
-      .into(imageView2)
+    private fun showUSer(users: List<GithubUserApiResponseItem>) {
+        usersRecyclerView.layoutManager = LinearLayoutManager(this)
+        usersRecyclerView.adapter = UsersAdapter(this, users)
+    }
 
-    //Glide
-    Glide.with(this)
-      .load("http://brokenfortest")
-      .placeholder(AvatarGenerator.avatarImage(this, 200, AvatarConstants.CIRCLE, "Kotjav"))
-      .into(imageView3)
+    private fun loadData() {
+        val disposable = apiCall.getUsersApi().getUsers()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    showUSer(it)
+                },
+                {
+                    Toast.makeText(this, "error occurred", Toast.LENGTH_LONG).show()
+                }
+            )
+        compositeDisposable.add(disposable)
+    }
 
-  }
-
+    override fun onStop() {
+        super.onStop()
+        compositeDisposable.dispose()
+    }
 }

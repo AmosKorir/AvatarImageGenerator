@@ -1,15 +1,11 @@
 package com.avatarfirst.avatargenlib
 
 import android.content.Context
-import android.graphics.Bitmap
+import android.graphics.*
 import android.graphics.Bitmap.Config.ARGB_8888
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.RectF
 import android.graphics.drawable.BitmapDrawable
 import android.text.TextPaint
+import android.util.Log
 import java.util.*
 
 /**
@@ -21,9 +17,10 @@ class AvatarGenerator {
         private var texSize = 0F
 
         fun avatarImage(context: Context, size: Int, shape: Int, name: String): BitmapDrawable {
-            return avatarImageGenerate(context, size, shape, name, AvatarConstants.COLOR700)
+            return avatarImageGenerate(context, size, shape, name)
         }
 
+        @Deprecated("Color mode parameter has been removed")
         fun avatarImage(
             context: Context,
             size: Int,
@@ -31,15 +28,14 @@ class AvatarGenerator {
             name: String,
             colorModel: Int
         ): BitmapDrawable {
-            return avatarImageGenerate(context, size, shape, name, colorModel)
+            return avatarImageGenerate(context, size, shape, name)
         }
 
         private fun avatarImageGenerate(
             context: Context,
             size: Int,
             shape: Int,
-            name: String,
-            colorModel: Int
+            name: String
         ): BitmapDrawable {
             uiContext = context
 
@@ -51,7 +47,9 @@ class AvatarGenerator {
             val areaRect = Rect(0, 0, size, size)
 
             if (shape == 0) {
-                painter.color = RandomColors().getColor()
+                var firstLetter = firstCharacter(name)
+                val r = firstLetter[0]
+                painter.color = getCharColor(r)
             } else {
                 painter.color = Color.TRANSPARENT
             }
@@ -64,7 +62,9 @@ class AvatarGenerator {
             if (shape == 0) {
                 painter.color = Color.TRANSPARENT
             } else {
-                painter.color = RandomColors().getColor()
+                var firstLetter = firstCharacter(name)
+                val r = firstLetter[0]
+                painter.color = getCharColor(r)
             }
 
             val bounds = RectF(areaRect)
@@ -78,6 +78,23 @@ class AvatarGenerator {
             canvas.drawText(label, bounds.left, bounds.top - textPaint.ascent(), textPaint)
             return BitmapDrawable(uiContext.resources, bitmap)
 
+        }
+
+        private fun getCharColor(char: Char): Int {
+
+            val redMask = 0xF8
+            val greenMask = 0xb2
+            val blueMask = 0xFC
+            val redShift = 8
+            val greenShift = 3
+            val blueShift = 2
+
+            val r: Int = char.toInt() shl redShift and redMask
+            val g: Int = char.toInt() shr greenShift and greenMask
+            val b: Int = char.toInt() shl blueShift and blueMask
+            Log.d("colorr", "${char.toInt()}, $r , $g ,$b")
+
+            return Color.rgb(r+100, g+100, b+100)
         }
 
         private fun firstCharacter(name: String): String {

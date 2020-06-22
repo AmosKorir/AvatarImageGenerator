@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">AvataGen</string>
+  <array name="users">
+  </array>
 </resources>
