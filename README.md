@@ -1,10 +1,19 @@
 # AvatarImageGenerator
 
-<img src="https://circleci.com/gh/skyways/AvatarImageGenerator.svg?style=svg"/> <a href="https://bintray.com/skyways/AvatarGenerator/AvatarGenerator/1.2/link"><img src="https://api.bintray.com/packages/skyways/AvatarGenerator/AvatarGenerator/images/download.svg?version=1.2"/></a>
-
-Generate first letter avatar Image like gmails contact avatar. It generates an drawable that can be be set to an ImageView.
+ [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/AmosKorir/AvatarImageGenerator/) [ ![Download](https://api.bintray.com/packages/skyways/AvatarGenerator/AvatarGenerator/images/download.svg?version=1.4) ](https://bintray.com/skyways/AvatarGenerator/AvatarGenerator/1.4/link)
+Generate first letter avatar Image like gmail's contact avatar. It generates an drawable that can be be set to an ImageView.
+<table>
+<tr>
+<td>
+<img  width="200" height="400" src="https://github.com/skyways/AvatarImageGenerator/blob/master/art/Screen2.png"/>
+</td>
+<td>
 
 <img  width="200" height="400" src="https://github.com/skyways/AvatarImageGenerator/blob/master/art/screen.jpeg"/>
+</td>
+</tr>
+</table>
+
 
 **Installation**
 
@@ -53,7 +62,7 @@ imageView.setImageDrawable(
 ```
 
 **Color Model**
-The current version supports material colors A 400,700 and 700.
+The current version supports material colors A 400,700 and 900.
 
 1. COLOR400
 2. COLOR700
