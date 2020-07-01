@@ -15,7 +15,7 @@ ext {
   siteUrl = 'https://github.com/skyways/AvatarImageGenerator'
   gitUrl = 'https://github.com/skyways/AvatarImageGenerator'
 
-  libraryVersion = '1.3'
+  libraryVersion = '1.4'
   developerId = 'skyways'
   developerName = 'Korir Amos'
   developerEmail = 'amoskrr@gmail.com'
@@ -31,8 +31,8 @@ android {
   defaultConfig {
     minSdkVersion 15
     targetSdkVersion 29
-    versionCode 1
-    versionName "1.0"
+    versionCode 4
+    versionName "1.4"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles 'consumer-rules.pro'
