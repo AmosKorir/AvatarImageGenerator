@@ -1,6 +1,6 @@
 # AvatarImageGenerator
 
- [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/AmosKorir/AvatarImageGenerator/) [ ![Download](https://api.bintray.com/packages/skyways/AvatarGenerator/AvatarGenerator/images/download.svg?version=1.4) ](https://bintray.com/skyways/AvatarGenerator/AvatarGenerator/1.4/link)
+ [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/AmosKorir/AvatarImageGenerator/) [![Join the chat at https://gitter.im/AvatarImageGenerator/community](https://badges.gitter.im/AvatarImageGenerator/community.svg)](https://gitter.im/AvatarImageGenerator/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [ ![Download](https://api.bintray.com/packages/skyways/AvatarGenerator/AvatarGenerator/images/download.svg?version=1.4) ](https://bintray.com/skyways/AvatarGenerator/AvatarGenerator/1.4/link)
 Generate first letter avatar Image like gmail's contact avatar. It generates an drawable that can be be set to an ImageView.
 <table>
 <tr>
