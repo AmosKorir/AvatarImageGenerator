@@ -1,6 +1,7 @@
 package com.avatarfirst.avatagen
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,12 +33,14 @@ class UsersAdapter(
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.itemView.usename.text = users[position].login
         holder.itemView.userAvatar.setImageDrawable(
-            AvatarGenerator.avatarImage(
-                context,
-                200,
-                AvatarConstants.CIRCLE,
-                users[position].login
-            )
+            AvatarGenerator.AvatarBuilder(context)
+                .setLabel(users[position].login)
+                .setAvatarSize(120)
+                .setTextSize(30)
+                .toSquare()
+                .toCircle()
+                .setBackgroundColor(Color.RED)
+                .build()
         )
     }
 
