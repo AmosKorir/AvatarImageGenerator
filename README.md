@@ -6,11 +6,11 @@ Generate first letter avatar Image like gmail's contact avatar. It generates an 
 <table>
 <tr>
 <td>
-<img  width="200" height="400" src="Screen2.jpg"/>
+<img  width="200" height="400" src="art/screen2.jpg"/>
 </td>
 <td>
 
-<img  width="200" height="400" src="screen.jpeg"/>
+<img  width="200" height="400" src="art/screen.jpeg"/>
 </td>
 </tr>
 </table>
