@@ -20,7 +20,8 @@ Generate first letter avatar Image like gmail's contact avatar. It generates an 
 Add the Following to your gradle file.
 
 ```java
-         implementation 'com.first.avatargenerator:AvatarImageGenerator:VERSION'
+         NEW VERSION JITPACK DEPENDENCY
+         implementation 'com.github.amoskorir:avatarimagegenerator:VERSION'
 ```
 
 New Builder pattern
