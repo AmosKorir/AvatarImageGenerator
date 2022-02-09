@@ -36,10 +36,9 @@ class UsersAdapter(
             AvatarGenerator.AvatarBuilder(context)
                 .setLabel(users[position].login)
                 .setAvatarSize(120)
-                .setTextSize(30)
-                .toSquare()
+                .setTextSize(20)
                 .toCircle()
-                .setBackgroundColor(Color.RED)
+                .toLowerCase()
                 .build()
         )
     }
