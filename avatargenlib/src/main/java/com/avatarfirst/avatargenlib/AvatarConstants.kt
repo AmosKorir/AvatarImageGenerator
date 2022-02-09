@@ -11,5 +11,6 @@ class AvatarConstants {
     val COLOR900=900
     val COLOR400=400
     val COLOR700=700
+
   }
 }

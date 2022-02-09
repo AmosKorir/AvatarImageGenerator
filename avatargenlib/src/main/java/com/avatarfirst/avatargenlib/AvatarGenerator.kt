@@ -16,9 +16,13 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
 
         private var textSize = 100
         private var size = 14
+        private var borderWidth = 10
         private var name = " "
         private var backgroundColor: Int? = null
+        private var borderColor: Int? = null
+        private var isWithBorder = false
         private var shapeType = AvatarConstants.CIRCLE
+        private var isUpperCase = false
 
 
         fun setTextSize(textSize: Int) = apply {
@@ -37,6 +41,26 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             this.backgroundColor = color
         }
 
+        fun setBorderColor(color: Int) = apply {
+            this.borderColor = color
+        }
+
+        fun setBorderWidth(width: Int) = apply {
+            this.borderWidth= width
+        }
+
+        fun toUpperCase() =apply{
+            isUpperCase = true
+        }
+
+        fun toLowerCase()=apply {
+            isUpperCase = false
+        }
+
+        fun setWithBorder(borderEnabled: Boolean) = apply {
+            isWithBorder = borderEnabled
+        }
+
         fun toSquare() = apply {
             this.shapeType = AvatarConstants.RECTANGLE
         }
@@ -53,6 +77,7 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
                 shapeType,
                 name,
                 textSize,
+                borderWidth,
                 AvatarConstants.COLOR700
             )
         }
@@ -64,8 +89,10 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             shape: Int,
             name: String,
             textSize: Int,
+            borderWidth: Int,
             colorModel: Int
         ): BitmapDrawable {
+
             uiContext = context
 
             texSize = calTextSize(textSize)
@@ -73,11 +100,10 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             val textPaint = textPainter()
             val painter = painter()
             painter.isAntiAlias = true
+
             val areaRect = Rect(0, 0, size, size)
 
-            if (shape == 0) {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
+            if (shape == AvatarConstants.RECTANGLE) {
                 painter.color = backgroundColor ?: RandomColors(colorModel).getColor()
             } else {
                 painter.color = Color.TRANSPARENT
@@ -87,12 +113,11 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             val canvas = Canvas(bitmap)
             canvas.drawRect(areaRect, painter)
 
+
             //reset painter
-            if (shape == 0) {
+            if (shape == AvatarConstants.RECTANGLE) {
                 painter.color = Color.TRANSPARENT
             } else {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
                 painter.color = backgroundColor ?: RandomColors(colorModel).getColor()
             }
 
@@ -104,16 +129,92 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             bounds.top += (areaRect.height() - bounds.bottom) / 2.0f
 
             canvas.drawCircle(size.toFloat() / 2, size.toFloat() / 2, size.toFloat() / 2, painter)
+
+            if (isWithBorder) {
+                when (shape) {
+                    AvatarConstants.RECTANGLE -> {
+                        drawBorder(canvas, areaRect, painter)
+
+                    }
+                    AvatarConstants.CIRCLE -> {
+                        drawCircleBorder(canvas, size, borderWidth, painter)
+                    }
+                }
+            }
+
+
+
             canvas.drawText(label, bounds.left, bounds.top - textPaint.ascent(), textPaint)
+
             return BitmapDrawable(uiContext.resources, bitmap)
 
+        }
+
+        private fun drawCircleBorder(
+            canvas: Canvas,
+            originalSize: Int,
+            borderWidth: Int,
+            painter: Paint
+        ) {
+            val size = originalSize - borderWidth
+            painter.color = borderColor ?: Color.BLACK
+            painter.style = Paint.Style.STROKE
+            painter.strokeWidth = borderWidth.toFloat()
+            canvas.drawCircle(
+                originalSize.toFloat() / 2,
+                originalSize.toFloat() / 2,
+                size.toFloat() / 2,
+                painter
+            )
+        }
+
+        private fun drawBorder(canvas: Canvas, shape: Rect, painter: Paint) {
+            painter.color = borderColor ?: Color.BLACK
+            painter.style = Paint.Style.STROKE
+            painter.strokeWidth = borderWidth.toFloat()
+            canvas.drawRect(shape, painter)
+        }
+
+        private fun drawBorder(
+            canvas: Canvas,
+            shape: Int,
+            originalSize: Int,
+            painter: Paint,
+            borderColor: Int?
+        ) {
+            val size = borderWidth + originalSize
+            painter.style = Paint.Style.STROKE
+            painter.strokeWidth = borderWidth.toFloat()
+            painter.color = borderColor ?: RandomColors(700).getColor()
+
+
+            painter.color = borderColor ?: Color.BLACK
+            painter.style = Paint.Style.STROKE
+            painter.strokeWidth = borderWidth.toFloat()
+            canvas.drawRect(Rect(0, 0, size, size), painter)
+            if (shape == AvatarConstants.RECTANGLE) {
+
+                //  canvas.drawRect(Rect(0, 0, size, size), painter)
+
+            } else {
+                canvas.drawCircle(
+                    size.toFloat() / 2,
+                    size.toFloat() / 2,
+                    size.toFloat() / 2,
+                    painter
+                )
+            }
         }
 
         private fun firstCharacter(name: String): String {
             if (name.isEmpty()) {
                 return "-"
             }
-            return name.first().toString()
+            return if (isUpperCase) {
+                name.first().toString().toUpperCase(Locale.ROOT)
+            } else {
+                name.first().toString().toLowerCase(Locale.ROOT)
+            }
         }
 
         private fun textPainter(): TextPaint {
@@ -175,8 +276,6 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             val areaRect = Rect(0, 0, size, size)
 
             if (shape == 0) {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
                 painter.color = RandomColors(colorModel).getColor()
             } else {
                 painter.color = Color.TRANSPARENT
@@ -190,8 +289,6 @@ class AvatarGenerator(private val builder: AvatarBuilder) {
             if (shape == 0) {
                 painter.color = Color.TRANSPARENT
             } else {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
                 painter.color = RandomColors(colorModel).getColor()
             }
 
