@@ -15,14 +15,28 @@ Generate first letter avatar Image like gmail's contact avatar. It generates an 
 </tr>
 </table>
 
-**Installation**
+## Installation
+
+**Note**: Before you can install AvatarImageGenerator you must first add JitPack as a maven repository in `settings.gradle`
+
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
 
 Add the Following to your gradle file.
 
-```java
-         NEW VERSION JITPACK DEPENDENCY
-         implementation 'com.github.amoskorir:avatarimagegenerator:VERSION'
+```gradle
+implementation 'com.github.amoskorir:avatarimagegenerator:VERSION'
 ```
+
+## Usage
 
 New Builder pattern
 
@@ -37,7 +51,7 @@ New Builder pattern
                 .build()
 ```
 
-**Supports**
+## Supports
 
 Using glide or Picasso you can set the drawable to an imageView as a placeholder.
 
